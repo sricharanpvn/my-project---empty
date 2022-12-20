@@ -30,7 +30,6 @@ export class AppComponent {
       this.urldata=ud;
     });
 
-    this.service.geturldata().
   }
 
   // latlondetails:any = this.fb.group({
