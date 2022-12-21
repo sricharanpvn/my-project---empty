@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 // import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './api.service';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'my-project';
   data: any;
@@ -17,31 +17,65 @@ export class AppComponent {
   page:number = 1;
   count:number = 0;
   tableSize:number = 3;
-  lat:number=35.5;
-  lon:number=-78.5;
+  lat:string='16.55';
+  lon:string='80.64';
+  latlon={};
+  countries:any;
+  state:any;
+  sample:any;
+  sta:any;
+  city:any;
 
-  constructor( private service:ApiService, private fb:FormBuilder) {}//
+  constructor( private service:ApiService) {}
   ngOnInit(){
-    this.data=this.service.getdata().subscribe((urldata)=>{
-      this.data=urldata;
+    this.data=this.service.getdata().subscribe((d)=>{
+      this.data=d;
     });
 
-    this.urldata=this.service.geturldata().subscribe((ud)=>{
+    this.urldata=this.service.geturldata(this.lat,this.lon).subscribe((ud)=>{
       this.urldata=ud;
     });
 
+    this.countries=this.service.getCountries().subscribe(d=>{
+      this.countries=d;
+    })
+    this.state=this.service.getStates().subscribe(s=>{
+      this.state=s;
+    })
   }
-
-  // latlondetails:any = this.fb.group({
-  //   lat:[''],
-  //   lon:['']
-  // });
 
   onTableDataChange(event:any){
     this.page = event;
     this.data;
   }
-  submit(){
+  submit(f){
+    document.getElementById('loading').style.display = 'inline-block';
+    let lanlog = f.value;
+    this.lat = lanlog.lat;
+    this.lon = lanlog.lon;
+    this.urldata=this.service.geturldata(this.lat,this.lon).subscribe((ud)=>{
+      this.urldata=ud;
+      setTimeout(document.getElementById('loading').style.display = 'none',5000);
+    });
+  }
 
+  onChangeCountry(countryname){
+    this.countries.data.forEach(s => {
+      if(s.name==countryname){
+        this.sta = s.states
+      }
+    });
+  }
+  onChangeState(statename){
+    this.state=this.service.getStates().subscribe(s=>{
+      this.state=s;
+      console.log(this.state)
+    })
+    this.state.data.forEach(c => {
+      if(c.name==statename){
+        this.city = c.cities
+        console.log(this.city)
+      }
+    });
   }
 }

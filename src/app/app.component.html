@@ -1,14 +1,39 @@
 <div>
+  <div>
+    <form>
+      <div>
+        <select name="" id="" (change)="onChangeCountry($event.target.value)">
+          <option>Select Country</option>
+          <option [value]="c.name" *ngFor="let c of countries.data">{{c.name}}</option>
+        </select>
+        &nbsp;
+        <select name="state" id="state" (change)="onChangeState($event.target.value)">
+          <option>Select State</option>
+          <option [value]="c.name" *ngFor="let c of sta">{{c.name}}</option>
+        </select>
+        &nbsp;
+        <select name="city" id="city">
+          <option>Select City</option>
+          <option [value]="c.name" *ngFor="let c of city">{{c.name}}</option>
+        </select>
+      </div>
+    </form>
+    </div>
   <h1>Weather API</h1>
-  <form>
+  <form #f="ngForm" (ngSubmit)="submit(f)">
     <div>
-      <label for="lon">lon:</label>
-      <input type="number" name="lon" [(ngModel)]="lon">
-      &nbsp;
       <label for="lat">lat:</label>
-      <input type="number" name="lat" [(ngModel)]="lat">
+      <input type="text" name="lat" [(ngModel)]="lat">
       &nbsp;
-      <button>Submit</button>
+      <label for="lon">lon:</label>
+      <input type="text" name="lon" [(ngModel)]="lon">
+      &nbsp;
+      <button type="submit">Submit</button>
+
+      {{lat}} {{lon}}
+    </div>
+    <div id="loading" style="display: none;">
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
     </div>
   </form>
   <p>city_name: {{urldata.city_name}}</p>
@@ -19,18 +44,19 @@
   <p>data:</p>
   <table border="1" cellspacing="0" cellpadding="10">
     <tr>
-      <td>pres</td>
-      <td>clouds</td>
-      <td>vis</td>
-      <td>wind_spd</td>
+      <td>temp</td>
+      <td>app_temp</td>
+      <td>ozone</td>
+      <td>wind_cdir</td>
     </tr>
     <tr *ngFor="let d of urldata.data">
-      <td>{{d.ghi}}</td>
-      <td>{{d.dhi}}</td>
-      <td>{{d.dhi}}</td>
-      <td>{{d.dhi}}</td>
+      <td>{{d.temp}}</td>
+      <td>{{d.app_temp}}</td>
+      <td>{{d.ozone}}</td>
+      <td>{{d.wind_cdir}}</td>
     </tr>
   </table>
+
 </div>
 
 
@@ -43,13 +69,10 @@
       <td>Id</td>
       <td>Name</td>
       <td>User Name</td>
-      <td>User Name</td>
       <td>Email</td>
+      <td>Address</td>
     </tr>
-    <tr *ngFor="let d of data | search:searchText | paginate: {
-      itemsPerPage: tableSize,
-    currentPage: page,
-    totalItems: count }">
+    <tr *ngFor="let d of data | search:searchText | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count }">
       <td>{{d.id}}</td>
       <td>{{d.name}}</td>
       <td>{{d.username}}</td>
