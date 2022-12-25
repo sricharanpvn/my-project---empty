@@ -1,0 +1,91 @@
+<app-dashboard></app-dashboard>
+<div>
+  <div>
+    <form>
+      <div>
+        <select name="" id="" (change)="onChangeCountry($event.target.value)">
+          <option>Select Country</option>
+          <option [value]="c.name" *ngFor="let c of countries.data">{{c.name}}</option>
+        </select>
+        &nbsp;
+        <select name="state" id="state" (change)="onChangeState($event.target.value)">
+          <option>Select State</option>
+          <option [value]="c.name" *ngFor="let c of sta">{{c.name}}</option>
+        </select>
+        &nbsp;
+        <select name="city" id="city">
+          <option>Select City</option>
+          <option [value]="c.name" *ngFor="let c of city">{{c.name}}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <h1>Weather API</h1>
+    <form #f="ngForm" (ngSubmit)="submit(f)">
+      <div>
+        <label for="lat">lat:</label>
+        <input type="text" name="lat" [(ngModel)]="lat">
+        &nbsp;
+        <label for="lon">lon:</label>
+        <input type="text" name="lon" [(ngModel)]="lon">
+        &nbsp;
+        <button type="submit">Submit</button>
+
+        {{lat}} {{lon}}
+      </div>
+      <div id="loading" style="display: none;">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
+    </form>
+    <p>city_name: {{urldata.city_name}}</p>
+    <p>lon:{{urldata.lon}}, lat:{{urldata.lat}}</p>
+    <p>state_code:{{urldata.state_code}}</p>
+    <p>timezone:{{urldata.timezone}}</p>
+    <p>country_code:{{urldata.country_code}}</p>
+    <p>data:</p>
+    <table border="1" cellspacing="0" cellpadding="10">
+      <tr>
+        <td>temp</td>
+        <td>app_temp</td>
+        <td>ozone</td>
+        <td>wind_cdir</td>
+      </tr>
+      <tr *ngFor="let d of urldata.data">
+        <td>{{d.temp}}</td>
+        <td>{{d.app_temp}}</td>
+        <td>{{d.ozone}}</td>
+        <td>{{d.wind_cdir}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <h1>Users Table</h1>
+    <input type="text" id="searchText" [(ngModel)]="searchText" name="searchText" placeholder="Search">
+
+    <table border="1" cellspacing="0" cellpadding="10">
+      <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>User Name</td>
+        <td>Email</td>
+        <td>Address</td>
+      </tr>
+      <tr *ngFor="let d of data | search:searchText | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count }">
+        <td>{{d.id}}</td>
+        <td>{{d.name}}</td>
+        <td>{{d.username}}</td>
+        <td>{{d.email}}</td>
+        <td>{{d.address.street}}, {{d.address.zipcode}}</td>
+      </tr>
+    </table>
+    <div id="my-pagination">
+    <pagination-controls (pageChange)="onTableDataChange($event)"></pagination-controls>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,89 @@
+{
+  "users": [
+    {
+      "name": "acsjh",
+      "age": 564,
+      "id": 1
+    },
+    {
+      "name": "Sri Charan",
+      "age": 32,
+      "id": 2
+    },
+    {
+      "name": "Sri Charan",
+      "age": 32,
+      "id": 3
+    },
+    {
+      "name": "Sri Charan",
+      "age": 32,
+      "id": 4
+    },
+    {
+      "name": "Sri Charan",
+      "age": 32,
+      "id": 5
+    },
+    {
+      "name": "Subhash",
+      "age": 165,
+      "id": 6
+    },
+    {
+      "name": "Subhash",
+      "age": 165,
+      "id": 7
+    },
+    {
+      "name": "jbhknjm",
+      "age": 531,
+      "id": 8
+    },
+    {
+      "name": "cgvhjnj",
+      "age": 315,
+      "id": 9
+    },
+    {
+      "name": "Subhash",
+      "age": 16,
+      "id": 10
+    },
+    {
+      "name": "Subhash",
+      "age": -5,
+      "id": 11
+    },
+    {
+      "name": "",
+      "age": null,
+      "id": 12
+    }
+  ],
+  "login": [
+    {
+      "id": 1,
+      "username": "rxdcQ@1",
+      "password": "rxdcQ@1",
+      "tocken":""
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

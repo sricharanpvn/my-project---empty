@@ -1,0 +1,31 @@
+<div>
+  <h1>Edit Item</h1>
+  <form>
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" [(ngModel)] = "usersForm.name" class="form-control" id="name" />
+    </div>
+    <div>
+      <label for="age">Age</label>
+      <input type="number" name="age" [(ngModel)] = "usersForm.age" class="form-control" id="age" />
+    </div>
+    <button type="button" (click)="editupdate()">Update</button>
+    <button type="button" (click)="back()">Back</button>
+
+  </form>
+</div>
+
+<!-- <div>
+  <form [formGroup]="usersForm" (submit)="editupdate()">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name" [(ngModel)]= "usersForm.name">
+    &nbsp;
+    <label for="age">Age</label>
+    <input type="number" name="age" id="age" formControlName="age" [(ngModel)] = "usersForm.age">
+    <br>
+    <button type="submit">
+      Save
+    </button> &nbsp;
+    <button type="reset">Clear</button>
+  </form>
+</div> -->

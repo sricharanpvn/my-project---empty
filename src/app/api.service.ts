@@ -32,15 +32,6 @@ export class ApiService {
       // });
   }
 
-  // private url = './assets/countries.json'
-  // getCount() {
-  //   return this.http.get(this.url+'country:Afghanistan');
-  // }
-
-  // getCities(countryId: string) {
-  //   return this.http.get('https://countriesnow.space/api/v0.1/countries/'+'/cities?country='+countryId);
-  // }
-
   getCountries():Observable<any>{
     let headers = new HttpHeaders({
       'X-RapidAPI-Host': 'world-country.p.rapidapi.com',
@@ -56,6 +47,7 @@ export class ApiService {
         headers: headers
       })
   }
+
   getStates():Observable<any>{
     let headers = new HttpHeaders({
       'X-RapidAPI-Host': 'world-country.p.rapidapi.com',
@@ -71,4 +63,5 @@ export class ApiService {
         headers: headers
       })
   }
+
 }

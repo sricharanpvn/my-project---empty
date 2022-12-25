@@ -1,0 +1,57 @@
+<div>
+  <h1>Users</h1>
+  <!-- <div>
+    <button routerLink="/users/create">Create</button> &nbsp;
+  </div> -->
+  <div>
+    <div>
+      <form [formGroup]="usersForm" (submit)="addUser()">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" formControlName="name">
+          <div *ngIf="formcontrols.name.touched && formcontrols.name.errors?.required">
+            <span style="color: red;">Name should not be empty.!</span>
+          </div>
+        </div>
+
+        &nbsp;
+        <div>
+          <label for="age">Age</label>
+          <input type="number" name="age" id="age" formControlName="age">
+          <div *ngIf="formcontrols.age.touched && formcontrols.age.errors?.required">
+            <span style="color: red;">Age should not be empty.!</span>
+          </div>
+          <div *ngIf="formcontrols.age.touched && formcontrols.age.errors?.max">
+            <span style="color: red;">Age should be Less Than 100</span>
+          </div>
+        </div>
+
+        <br>
+        <br>
+        <button type="submit" [disabled]="!usersForm.valid">Save</button> &nbsp;
+        <button type="reset">Clear</button> &nbsp;
+      </form>
+    </div>
+    <br>
+
+  </div>
+  <table border="1" cellspacing="0" cellpadding="10">
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Age</td>
+      <td>Actions</td>
+    </tr>
+    <tr *ngFor="let d of users">
+      <td>{{d.id}}</td>
+      <td>{{d.name}}</td>
+      <td>{{d.age}}</td>
+      <td>
+        <a [routerLink]="['/users/edit', d.id]">Edit</a> &nbsp;
+        <button (click)="delete(d.id)">Delete</button>
+      </td>
+      <!-- <td><button (click)="edit(d.id)">Edit</button></td> -->
+    </tr>
+  </table>
+
+</div>
